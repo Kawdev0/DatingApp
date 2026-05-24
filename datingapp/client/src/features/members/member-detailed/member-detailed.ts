@@ -1,0 +1,30 @@
+import { Component, inject } from '@angular/core';
+import { MemberService } from '../../../core/services/member-service';
+import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
+import { Member } from '../../../types/Member';
+
+@Component({
+  selector: 'app-member-detailed',
+  imports: [AsyncPipe, RouterLink, RouterLinkActive],
+  templateUrl: './member-detailed.html',
+ styleUrls: ['./member-detailed.css']
+})
+export class MemberDetailed {
+
+  private memberService = inject(MemberService);
+  private route = inject(ActivatedRoute);
+  protected member$?: Observable<Member>;
+
+  ngOnInit(): void {
+    this.member$ = this.loadMember();
+  }
+
+
+  loadMember() {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (!id) return;
+    return this.memberService.getMember(id);
+  }
+}
