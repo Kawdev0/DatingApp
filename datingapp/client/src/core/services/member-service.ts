@@ -20,4 +20,8 @@ export class MemberService {
   return this.http.get<Member[]>(this.baseUrl + 'members' + id);
  }
 
+
+ getMemberPhotos(id: string) {
+  return this.http.get<Photo[]>(this.baseUrl + 'members' + id + '/photos');
+ }
 }

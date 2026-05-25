@@ -13,7 +13,7 @@ class="card cursor-pointer transition-all duration-300 ease-in-out transform hov
           
     
     <div class="flex flex-col text-white"> 
-        <span class="font-semibold"> {{member.displayName}}, 25</span>
+        <span class="font-semibold"> {{member.displayName}}, {{member.dateOfBirth | age}}</span>
         <span class="text-sm">{{member.city}} </span>
         </div>
     
